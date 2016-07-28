@@ -1,4 +1,4 @@
-package com.nick.study.imageloader;
+package com.nick.study.imageloader.ImageCache;
 
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
@@ -6,10 +6,10 @@ import android.support.v4.util.LruCache;
 /**
  * Created by Administrator on 2016/7/24.
  */
-public class ImageCache {
+public class MemCache implements ImageCache {
     // 图片缓存
     LruCache<String, Bitmap> mImageCache;
-    public ImageCache(){
+    public MemCache(){
         initImageCache();
     }
     private void initImageCache() {
@@ -26,10 +26,12 @@ public class ImageCache {
         };
     }
 
+    @Override
     public void put(String key,Bitmap value){
         mImageCache.put(key,value);
     }
 
+    @Override
     public Bitmap get(String key){
        return mImageCache.get(key);
     }
